@@ -1,0 +1,19 @@
+<h1>Links#create</h1>
+<p>Create a new shortlink</p>
+<%= form_for :link, url: links_path do |l| %>
+  <p>
+    <%= l.label :shortlink %><br>
+    <%= l.text_field :shortlink %><br>
+  </p>
+  <p>
+    <%= l.label :url %><br>
+    <%= l.text_field :url %><br>
+  </p>
+  <p>
+    <%= l.label :argsstr %><br>
+    <%= l.text_field :argsstr %><br>
+  </p>
+  <p>
+    <%= l.submit %><br>
+  </p>
+<% end %>
