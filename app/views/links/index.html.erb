@@ -1,0 +1,16 @@
+<h1>All Links</h1>
+<table>
+  <tr>
+    <th>Shortlink</th>
+    <th>URL</th>
+    <th>Argsstr</th>
+  </tr>
+
+  <% @links.each do |link| %>
+    <tr>
+      <td><%= link.shortlink %></td>
+      <td><%= link.url %></td>
+      <td><%= link.argsstr %></td>
+    </tr>
+  <% end %>
+</table>
