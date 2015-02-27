@@ -1,18 +1,37 @@
 <h1>Create a new ShortLink!</h1>
-<%= form_for :link, url: links_path do |l| %>
-  <p>
-    The code you'll use to redirect to your chosen site (go/<my_shorlink>)<br>
-    <%= l.text_field :shortlink %><br>
-  </p>
-  <p>
-    The URL you want to redirect to<br>
-    <%= l.text_field :url %><br>
-  </p>
-  <p>If you want, you can allow additional parameters to be passed to your url. Put an additional string here with a "%s" in it and anything after the second slash when using the shortlink will get insterted in place of the '%s' and then appended to the original URL.</p>
-  <p>For example, with a shortlink 'phab' that maps to 'https://phabricator.inverselink.com/, and an argsstr of just '%s', go/phab/T4316 will take you to https://phabricator.inverselink.com/T4316<br>
-    <%= l.text_field :argsstr %><br>
-  </p>
-  <p>
-    <%= l.submit %><br>
-  </p>
+<% if @link.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    <%= pluralize(@link.errors.count, "error") %> found in requested shortlink
+  </h2>
+  <ul>
+    <% @link.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">Create</div>
+  <div class="panel-body">
+    <%= form_for :link, url: links_path do |l| %>
+    <div class="form-group">
+      <label for="link_shortlink">Shortlink</label>
+      <%= l.text_field :shortlink, class: "form-control" %>
+      <span class="help-block">The code you'll use to redirect to your chosen site (go/<my_shorlink>)</span>
+    </div>
+    <div class="form-group">
+      <label for="link_shortlink">URL</label>
+      <%= l.text_field :url, class: "form-control" %>
+      <span class="help-block">The URL to which you want to redirect</span>
+    </div>
+    <div class="form-group">
+      <label for="link_shortlink">Argument String</label>
+      <%= l.text_field :argsstr, class: "form-control" %>
+      <span class="help-block">If you want, you can allow additional parameters to be passed to your url. Put an additional string here with a "%s" in it and anything after the second slash when using the shortlink will get insterted in place of the '%s' and then appended to the original URL.</span>
+    </div>
+    <%= l.submit 'Save', class: "btn btn-primary" %>&nbsp;<%= link_to 'Cancel', links_path, class: "btn btn-default" %>
+    <% end %>
+    
+  </div>
+</div>

@@ -1,9 +1,12 @@
 <h1>All Links</h1>
-<table>
+<div class="panel panel-default">
+  <div class="panel-heading">Current Shortlinks</div>
+<table class="table">
   <tr>
     <th>Shortlink</th>
     <th>URL</th>
     <th>Argsstr</th>
+    <th colspan="2"></th>
   </tr>
 
   <% @links.each do |link| %>
@@ -11,6 +14,10 @@
       <td><%= link.shortlink %></td>
       <td><%= link.url %></td>
       <td><%= link.argsstr %></td>
+      <td><%= link_to 'Show', link_path(link) %></td>
+      <td><%= link_to 'Edit', edit_link_path(link) %></td>
     </tr>
   <% end %>
 </table>
+</div>
+</div>

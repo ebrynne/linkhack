@@ -4,19 +4,34 @@ class LinksController < ApplicationController
   end
 
   def show
-    puts params[:id]
     @link = Link.find(params[:id])
-    puts @link.to_s
   end
 
   def new
+    @link = Link.new(params[:link])
+  end
 
+  def edit
+    @link = Link.find(params[:id])
+  end
+
+  def update
+    @link = Link.find(params[:id])
+
+    if @link.update(link_params)
+      redirect_to @link
+    else
+      render 'edit'
+    end
   end
 
   def create
     @link = Link.new(link_params)
-    @link.save
-    redirect_to @link
+    if @link.save
+      redirect_to @link
+    else
+      render 'new'
+    end
   end
 
   private

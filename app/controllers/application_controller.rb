@@ -4,17 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def redirector
-    segments = request.fullpath.split('/').reject { |s| s.empty? }
-    shortlink = segments[0]
-    link = Link.find_by_shortlink(shortlink)
+    short, args = request.fullpath[1..-1].split('/', 2).reject { |s| s.empty? }
+    link = Link.find_by_shortlink(short)
     if link
       url = link.url
-      if link.argsstr && segments.length > 1
-        url = url + link.argsstr.sub('%s', segments[1])
+      if link.argsstr && args
+        url = url + link.argsstr.sub('%s', args)
       end
       redirect_to url
     else
-      redirect_to :controller => 'links', :action => 'new'
+      redirect_to :controller => 'links',
+        :action => 'new',
+        :link => {:shortlink => short, :argsstr => args}
     end
   end
 end
