@@ -1,0 +1,31 @@
+<h1>Edit ShortLink</h1>
+<% if @link.errors.any? %>
+<div id="error_explanation">
+  <% @link.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger" role="alert"><%= msg %></div>
+  <% end %>
+</div>
+<% end %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_for :link, url: link_path(@link), method: :patch do |l| %>
+    <div class="form-group">
+      <label for="link_shortlink">Shortlink</label>
+      <%= l.text_field :shortlink, class: "form-control" %>
+      <span class="help-block">The code you'll use to redirect to your chosen site (go/MY_SHORTLINK)</span>
+    </div>
+    <div class="form-group">
+      <label for="link_shortlink">URL</label>
+      <%= l.text_field :url, class: "form-control" %>
+      <span class="help-block">The URL to which you want to redirect</span>
+    </div>
+    <div class="form-group">
+      <label for="link_shortlink">Argument String</label>
+      <%= l.text_field :argsstr, class: "form-control" %>
+      <span class="help-block">If you want, you can allow additional parameters to be passed to your url. Put an additional string here with a "%s" in it and anything after the second slash when using the shortlink will get insterted in place of the '%s' and then appended to the original URL.</span>
+    </div>
+    <%= l.submit 'Save', class: "btn btn-primary" %>
+    <%= link_to 'Cancel', link_path(@link), class: "btn btn-default pull-right" %>
+    <% end %>
+  </div>
+</div>
