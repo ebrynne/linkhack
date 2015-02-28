@@ -8,7 +8,9 @@ class LinksController < ApplicationController
   end
 
   def new
-    @link = Link.new(params[:link])
+    if params.member? :link
+      @link = Link.new(link_params)
+    end
   end
 
   def edit

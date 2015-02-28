@@ -1,14 +1,22 @@
-<p>
-  <strong>Shortlink:</strong>
-  <%= @link.shortlink %>
-</p>
-<p>
-  <strong>URL:</strong>
-  <%= @link.url %>
-</p>
-<p>
-  <strong>Argsstr:</strong>
-  <%= @link.argsstr %>
-</p>
-<%= link_to 'Edit', edit_link_path(@link) %>
-<%= link_to 'Link List', links_path %><br>
+<h1>Shortlink: <%= @link.shortlink %></h1>
+<div class="panel panel-default">
+<div class="panel-heading">Shortlink ID: <%= @link.id %></div>
+<table class="table">
+<tr>
+<td><strong>Shortlink</strong></td>
+<td> <%= @link.shortlink %></td>
+</tr>
+<tr>
+  <td><strong>URL</strong></td>
+  <td><%= @link.url %></td>
+</tr>
+<tr>
+  <td><strong>Args String</strong></td>
+  <td><%= @link.argsstr %></td>
+</tr>
+</table>
+<div class="panel-body">
+<%= link_to 'Edit', edit_link_path(@link), class: "btn btn-primary" %>
+<%= link_to 'Link List', links_path, class: "btn btn-default pull-right" %><br>
+</div>
+</div>

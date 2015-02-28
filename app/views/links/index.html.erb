@@ -1,21 +1,19 @@
 <h1>All Links</h1>
 <div class="panel panel-default">
-  <div class="panel-heading">Current Shortlinks</div>
-<table class="table">
+  <div class="panel-heading">Current Shortlinks<span class="pull-right"><%= link_to 'Create your own!', new_link_path %></span></div>
+<table class="table table-hover">
   <tr>
     <th>Shortlink</th>
     <th>URL</th>
-    <th>Argsstr</th>
-    <th colspan="2"></th>
+    <th>Argument String</th>
+    <th></th>
   </tr>
-
   <% @links.each do |link| %>
     <tr>
       <td><%= link.shortlink %></td>
-      <td><%= link.url %></td>
+      <td><a href="<%= link.url %>"><%= link.url %></a></td>
       <td><%= link.argsstr %></td>
-      <td><%= link_to 'Show', link_path(link) %></td>
-      <td><%= link_to 'Edit', edit_link_path(link) %></td>
+      <td><%= link_to 'Details', link_path(link) %></td>
     </tr>
   <% end %>
 </table>
