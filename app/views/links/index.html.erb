@@ -13,6 +13,7 @@
       <td><%= link.shortlink %></td>
       <td><a href="<%= link.url %>"><%= link.url %></a></td>
       <td><%= link.argsstr %></td>
+      <td><%= link_to 'Destroy', link_path(link), data: { confirm: 'Are you sure?' }, method: :delete %></td>
       <td><%= link_to 'Details', link_path(link) %></td>
     </tr>
   <% end %>

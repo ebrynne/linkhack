@@ -1,10 +1,11 @@
 class LinksController < ApplicationController
+  before_action :load_link, only: [:show, :edit, :update, :destroy]
+
   def index
     @links = Link.all
   end
 
   def show
-    @link = Link.find(params[:id])
   end
 
   def new
@@ -14,12 +15,9 @@ class LinksController < ApplicationController
   end
 
   def edit
-    @link = Link.find(params[:id])
   end
 
   def update
-    @link = Link.find(params[:id])
-
     if @link.update(link_params)
       redirect_to @link
     else
@@ -36,7 +34,16 @@ class LinksController < ApplicationController
     end
   end
 
+  def destroy
+    @link.destroy
+    redirect_to action: :index
+  end
+
   private
+
+  def load_link
+    @link = Link.find params[:id]
+  end
 
   def link_params
     params.require(:link).permit(:url, :shortlink, :argsstr)
