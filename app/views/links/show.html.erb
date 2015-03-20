@@ -17,6 +17,7 @@
 </table>
 <div class="panel-body">
 <%= link_to 'Edit', edit_link_path(@link), class: "btn btn-primary" %>
+<%= link_to 'Destroy', link_path(@link), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger" %><br />
 <%= link_to 'Link List', links_path, class: "btn btn-default pull-right" %><br>
 </div>
 </div>
