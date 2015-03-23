@@ -20,10 +20,16 @@ describe Link do
 
     describe 'javascript links' do
       let(:link) { 'javascript:alert(/x/)' }
-
+      
       it { is_expected.to be_invalid }
+      it { expect(subject.errors.get(:url)).to eq ['is not a valid URL'] }
+    end
 
-      it { expect(subject.errors.get(:url)).to eq ['is invalid'] }
+    describe 'javascript with http links' do
+      let(:link) { 'javascript:alert(\'Hello world http://\')' }
+      
+      it { is_expected.to be_invalid }
+      it { expect(subject.errors.get(:url)).to eq ['is not a valid URL'] }
     end
   end
 end
