@@ -2,7 +2,7 @@ class LinksController < ApplicationController
   before_action :load_link, only: [:show, :edit, :update, :destroy]
 
   def index
-    @links = Link.all
+    @links = Link.search(params[:query])
   end
 
   def show
@@ -46,6 +46,6 @@ class LinksController < ApplicationController
   end
 
   def link_params
-    params.require(:link).permit(:url, :shortlink, :argsstr)
+    params.require(:link).permit(:url, :shortlink, :argsstr, :description)
   end
 end
