@@ -5,9 +5,7 @@ A simple link shortener designed to run on an internal network to share resource
 ## Future Work
 There are loads of things I'd like to make LinkHack do, and ultimately there are probably a whole whack of ideas that other people are going to have that are way better than anything I come up with. So I'll maintain a list here of my personal favourites both to give a sense of where this is going, and so that those that are interested in contributing have some suggestions if they don't have anything specific in mind.
 
-- Link searching. Once you've got enough links it'll be useful to have some filtering tools.
 - Link pagination. Seems like it might be useful eventually.
-- Link descriptions. Particularly useful in conjuncation with search.
 - Slack integration. Still working out exactly how to do this, but it'd be great if go/foo turned into a clickable link in slack. There are some other things that could be built (or just configured in slack) as well, like link creation through /commands and inline previews.
 - Chrome search engine integration. I've heard that you can make it so that chrome can do intelligent autocompleting if you set up the correct endpoint for it to discover. I'll need to figure out how this works.
 - Better documentation. Sorry.
