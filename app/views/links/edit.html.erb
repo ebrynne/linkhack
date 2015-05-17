@@ -10,6 +10,10 @@
   <div class="panel-body">
     <%= form_for :link, url: link_path(@link), method: :patch do |l| %>
     <div class="form-group">
+      <label for="link_shortlink">Shortlink is a Regular Expression</label>
+      <span class="help-block"><% if @link.type %>Yes<% else %>No<% end %></span>
+    </div>
+    <div class="form-group">
       <label for="link_shortlink">Shortlink</label>
       <%= l.text_field :shortlink, class: "form-control" %>
       <span class="help-block">The code you'll use to redirect to your chosen site (go/MY_SHORTLINK)</span>

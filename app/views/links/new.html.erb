@@ -11,31 +11,67 @@
   </ul>
 </div>
 <% end %>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <%= form_for :link, url: links_path do |l| %>
-    <div class="form-group">
-      <label for="link_shortlink">Shortlink</label>
-      <%= l.text_field :shortlink, class: "form-control" %>
-      <span class="help-block">The code you'll use to redirect to your chosen site (go/MY_SHORTLINK)</span>
+<ul class='nav nav-tabs'>
+  <li role="presentation" class="active"><a href="#basic-link" data-toggle="tab">Basic Link</a></li>
+  <li role="presentation"><a href="#regex-link" data-toggle="tab">Regex Link (BETA)</a></li>
+</ul>
+<div class="tab-content">
+  <div class="panel panel-default tab-pane fade in active" id="basic-link">
+    <div class="panel-body">
+      <%= form_for :link, url: links_path do |l| %>
+      <div class="form-group">
+        <label for="link_shortlink">Shortlink</label>
+        <%= l.text_field :shortlink, class: "form-control" %>
+        <span class="help-block">The code you'll use to redirect to your chosen site (go/MY_SHORTLINK)</span>
+      </div>
+      <div class="form-group">
+        <label for="link_shortlink">URL</label>
+        <%= l.text_field :url, class: "form-control" %>
+        <span class="help-block">The URL to which you want to redirect</span>
+      </div>
+      <div class="form-group">
+        <label for="link_shortlink">Argument String</label>
+        <%= l.text_field :argsstr, class: "form-control" %>
+        <span class="help-block">If you want, you can allow additional parameters to be passed to your url. Put an additional string here with a "%s" in it and anything after the second slash when using the shortlink will get insterted in place of the '%s' and then appended to the original URL.</span>
+      </div>
+      <div class="form-group">
+        <label for="link_shortlink">Description</label>
+        <%= l.text_area :description, class: "form-control" %>
+        <span class="help-block">A short description of your link that might be helpful to others. Totally optional.</span>
+      </div>
+      <%= l.submit 'Save', class: "btn btn-primary" %>
+      <%= link_to 'Back to All Links', links_path, class: "btn btn-default pull-right" %>
+      <% end %>
     </div>
-    <div class="form-group">
-      <label for="link_shortlink">URL</label>
-      <%= l.text_field :url, class: "form-control" %>
-      <span class="help-block">The URL to which you want to redirect</span>
-    </div>
-    <div class="form-group">
-      <label for="link_shortlink">Argument String</label>
-      <%= l.text_field :argsstr, class: "form-control" %>
-      <span class="help-block">If you want, you can allow additional parameters to be passed to your url. Put an additional string here with a "%s" in it and anything after the second slash when using the shortlink will get insterted in place of the '%s' and then appended to the original URL.</span>
-    </div>
-    <div class="form-group">
-      <label for="link_shortlink">Description</label>
-      <%= l.text_area :description, class: "form-control" %>
-      <span class="help-block">A short description of your link that might be helpful to others. Totally optional.</span>
-    </div>
-    <%= l.submit 'Save', class: "btn btn-primary" %>
-    <%= link_to 'Back to All Links', links_path, class: "btn btn-default pull-right" %>
-    <% end %>
   </div>
-</div>
+  <div class="panel panel-default tab-pane fade" id="regex-link">
+    <div class="panel-body">
+      <div class="alert alert-info">This is a super basic first version of regex URL matching. Your shortlink can now be a regular expression with either zero or one groups. Either the group identified in the expression, or the entire matching shortlink if no group is defined, will have its content used as the argument string in the URL which you have selected for the redirect. Remember to be RESTRICTIVE in your matching (match start and end of string if possible) to avoid unexpected collisions</div>
+      <%= form_for :link, url: links_path do |l| %>
+      <div class="form-group">
+        <label for="link_shortlink">Shortlink</label>
+        <%= l.text_field :shortlink, class: "form-control" %>
+        <span class="help-block">The regex matching pattern for your shortlink. For example, ^[dD]\d+ would let you extract the a diff number for redirection.</span>
+      </div>
+      <div class="form-group">
+        <label for="link_shortlink">URL</label>
+        <%= l.text_field :url, class: "form-control" %>
+        <span class="help-block">The URL to which you want to redirect</span>
+      </div>
+      <div class="form-group">
+        <label for="link_shortlink">Argument String</label>
+        <%= l.text_field :argsstr, class: "form-control" %>
+        <span class="help-block">The string into which the group identified by your regex will be substituted (if a group was provided). If no argument string is defined the contents of the regex group is simply appended to the URL.</span>
+      </div>
+      <div class="form-group">
+        <label for="link_shortlink">Description</label>
+        <%= l.text_area :description, class: "form-control" %>
+        <span class="help-block">A short description of your link that might be helpful to others. Totally optional.</span>
+      </div>
+      <%= l.hidden_field :type, :value => RegexLink.name %>
+      <%= l.submit 'Save', class: "btn btn-primary" %>
+      <%= link_to 'Back to All Links', links_path, class: "btn btn-default pull-right" %>
+      <% end %>
+    </div>
+  </div>
+<div class="tab-content">

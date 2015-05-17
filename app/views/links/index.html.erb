@@ -4,6 +4,7 @@
 <table class="table table-hover">
   <tr>
     <th>Shortlink</th>
+    <th>Regex?</th>
     <th>URL</th>
     <th>Argument String</th>
     <th></th>
@@ -11,6 +12,7 @@
   <% @links.each do |link| %>
     <tr>
       <td><%= link.shortlink %></td>
+      <td><%= link.type == Link::RegexLink.name %></td>
       <td><a href="<%= link.url %>"><%= link.url %></a></td>
       <td><%= link.argsstr %></td>
       <td><%= link_to 'Details', link_path(link) %></td>

@@ -3,10 +3,13 @@
 <div class="panel-heading">Shortlink ID: <%= @link.id %></div>
 <table class="table">
 <tr>
-<td><strong>Shortlink</strong></td>
-<td> <%= @link.shortlink %></td>
+  <td><strong>Shortlink</strong></td>
+  <td><%= @link.shortlink %></td>
 </tr>
 <tr>
+  <td><strong>Regex?</strong></td>
+  <td><%= @link.type == Link::RegexLink.name %></td>
+</tr><tr>
   <td><strong>URL</strong></td>
   <td><%= @link.url %></td>
 </tr>
