@@ -12,7 +12,7 @@
   <% @links.each do |link| %>
     <tr>
       <td><%= link.shortlink %></td>
-      <td><%= link.type == Link::RegexLink.name %></td>
+      <td><%= link.type == RegexLink.name %></td>
       <td><a href="<%= link.url %>"><%= link.url %></a></td>
       <td><%= link.argsstr %></td>
       <td><%= link_to 'Details', link_path(link) %></td>
