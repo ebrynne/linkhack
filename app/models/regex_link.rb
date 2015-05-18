@@ -1,0 +1,1 @@
+class RegexLink < Link; end
