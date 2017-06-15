@@ -6,7 +6,7 @@ class Link < ActiveRecord::Base
 
   def self.search(query)
     if query.present?
-      Link.where("shortlink like '%#{query}%' OR description like '%#{query}%' OR url like '%#{query}%'").all
+      Link.where('shortlink like :query OR description like :query OR url like :query', query: "%#{query}%").all
     else
       Link.all
     end
