@@ -91,6 +91,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     public_suffix (3.0.1)
     rack (2.0.3)
+    rack-cors (1.0.2)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.6)
@@ -192,6 +193,7 @@ DEPENDENCIES
   coffee-rails
   jbuilder (~> 2.0)
   jquery-rails
+  rack-cors
   rails (~> 5.0.3)
   rspec
   sass-rails (~> 5.0)
