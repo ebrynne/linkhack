@@ -7,6 +7,7 @@ var config = {
 
     setup: function() {
         var button = document.getElementById('go_button');
+        document.getElementById('go_url').value = localStorage['go_url'];
         button.addEventListener('click',  config.setUrl );
     }
 };
