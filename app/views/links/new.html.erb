@@ -11,10 +11,29 @@
   </ul>
 </div>
 <% end %>
-<ul class='nav nav-tabs'>
-  <li role="presentation" class="active"><a href="#basic-link" data-toggle="tab">Basic Link</a></li>
-  <li role="presentation"><a href="#regex-link" data-toggle="tab">Regex Link (BETA)</a></li>
-</ul>
+<div class="card card-nav-tabs">
+  <div class="card-header" data-background-color="purple">
+    <div class="nav-tabs-navigation">
+      <div class="nav-tabs-wrapper">
+        <span class="nav-tabs-title">Link Types:</span>
+        <ul class="nav nav-tabs" data-tabs="tabs">
+          <li class="active">
+            <a href="#basic-link" data-toggle="tab" aria-expanded="true">
+              Standard
+              <div class="ripple-container"></div>
+            </a>
+          </li>
+          <li class="">
+            <a href="#regex-link" data-toggle="tab" aria-expanded="false">
+              Regex (Beta)
+              <div class="ripple-container"></div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-content">
 <div class="tab-content">
   <div class="panel panel-default tab-pane fade in active" id="basic-link">
     <div class="panel-body">
@@ -90,3 +109,6 @@
     </div>
   </div>
 <div class="tab-content">
+</div>
+</div>
+  </div></div>
