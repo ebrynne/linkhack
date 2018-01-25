@@ -1,4 +1,4 @@
-chrome.alarms.create("check_for_updates", {delayInMinutes: 0.2, periodInMinutes: 0.2} );
+chrome.alarms.create("check_for_updates", {delayInMinutes: 1, periodInMinutes: 5} );
 REGEX_KEY = '___REGEX___';
 
 chrome.webRequest.onBeforeRequest.addListener(
