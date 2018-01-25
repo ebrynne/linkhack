@@ -3,6 +3,10 @@ class LinksController < ApplicationController
 
   def index
     @links = Link.search(params[:query])
+    respond_to do |format|
+      format.html {}
+      format.json {}
+    end
   end
 
   def show
