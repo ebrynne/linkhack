@@ -15,7 +15,7 @@ class RegexLink < Link
     if argsstr.empty?
       target_url += args
     else
-      target_url = argsstr.sub('%s', args)
+      target_url += argsstr.sub('%s', args)
     end
 
     target_url
