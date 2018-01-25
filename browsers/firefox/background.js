@@ -1,7 +1,7 @@
-chrome.alarms.create("check_for_updates", {delayInMinutes: 1, periodInMinutes: 5} );
+browser.alarms.create("check_for_updates", {delayInMinutes: 1, periodInMinutes: 5} );
 REGEX_KEY = '___REGEX___';
 
-chrome.webRequest.onBeforeRequest.addListener(
+browser.webRequest.onBeforeRequest.addListener(
     function(details) {
         request = details.url.match(/^https?:\/\/[^\/]+([\S\s]*)/)[1].replace(/^\//, '');
         request = request.split('/');
@@ -35,7 +35,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     ["blocking"]
 );
 
-chrome.alarms.onAlarm.addListener(function( alarm ) {
+browser.alarms.onAlarm.addListener(function( alarm ) {
     go_url = localStorage['go_url']
     $.getJSON(go_url + '/links.json', function (linkList) {
         regex_links = [];
