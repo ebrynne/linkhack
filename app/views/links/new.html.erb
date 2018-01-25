@@ -42,7 +42,7 @@
         <%= l.submit 'Save', class: "btn btn-primary" %>
         <%= link_to 'Back to All Links', links_path, class: "btn btn-default pull-right" %>
 
-        <% if @relevant_links.any? %>
+        <% if @relevant_links.present? %>
           <hr/>
           <h2>Links (kinda) similar to the one you tried to access:</h2>
           <% @relevant_links.each do |link| %>
