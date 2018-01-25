@@ -1,9 +1,8 @@
 var config = {
     setUrl: function(e) {
         var input = document.getElementById('go_url');
-        chrome.storage.sync.set({ "go_url": input.value }, function(){
-            window.close();
-        });
+        localStorage['go_url'] = input.value
+        window.close();
     },
 
     setup: function() {
