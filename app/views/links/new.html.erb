@@ -19,28 +19,43 @@
   <div class="panel panel-default tab-pane fade in active" id="basic-link">
     <div class="panel-body">
       <%= form_for :link, url: links_path do |l| %>
-      <div class="form-group">
-        <label for="link_shortlink">Shortlink</label>
-        <%= l.text_field :shortlink, class: "form-control" %>
-        <span class="help-block">The code you'll use to redirect to your chosen site (go/MY_SHORTLINK)</span>
-      </div>
-      <div class="form-group">
-        <label for="link_shortlink">URL</label>
-        <%= l.text_field :url, class: "form-control" %>
-        <span class="help-block">The URL to which you want to redirect</span>
-      </div>
-      <div class="form-group">
-        <label for="link_shortlink">Argument String</label>
-        <%= l.text_field :argsstr, class: "form-control" %>
-        <span class="help-block">If you want, you can allow additional parameters to be passed to your url. Put an additional string here with a "%s" in it and anything after the second slash when using the shortlink will get insterted in place of the '%s' and then appended to the original URL.</span>
-      </div>
-      <div class="form-group">
-        <label for="link_shortlink">Description</label>
-        <%= l.text_area :description, class: "form-control" %>
-        <span class="help-block">A short description of your link that might be helpful to others. Totally optional.</span>
-      </div>
-      <%= l.submit 'Save', class: "btn btn-primary" %>
-      <%= link_to 'Back to All Links', links_path, class: "btn btn-default pull-right" %>
+        <div class="form-group">
+          <label for="link_shortlink">Shortlink</label>
+          <%= l.text_field :shortlink, class: "form-control" %>
+          <span class="help-block">The code you'll use to redirect to your chosen site (go/MY_SHORTLINK)</span>
+        </div>
+        <div class="form-group">
+          <label for="link_shortlink">URL</label>
+          <%= l.text_field :url, class: "form-control" %>
+          <span class="help-block">The URL to which you want to redirect</span>
+        </div>
+        <div class="form-group">
+          <label for="link_shortlink">Argument String</label>
+          <%= l.text_field :argsstr, class: "form-control" %>
+          <span class="help-block">If you want, you can allow additional parameters to be passed to your url. Put an additional string here with a "%s" in it and anything after the second slash when using the shortlink will get insterted in place of the '%s' and then appended to the original URL.</span>
+        </div>
+        <div class="form-group">
+          <label for="link_shortlink">Description</label>
+          <%= l.text_area :description, class: "form-control" %>
+          <span class="help-block">A short description of your link that might be helpful to others. Totally optional.</span>
+        </div>
+        <%= l.submit 'Save', class: "btn btn-primary" %>
+        <%= link_to 'Back to All Links', links_path, class: "btn btn-default pull-right" %>
+
+        <% if @relevant_links.any? %>
+          <hr/>
+          <h2>Links (kinda) similar to the one you tried to access:</h2>
+          <% @relevant_links.each do |link| %>
+            <dl>
+              <dt>
+                go/<%= link.shortlink %>
+              </dt>
+              <dd>
+                <%= link_to link.url_for([@link.shortlink, @link.argsstr].join(" ")) %>
+              </dd>
+            </dl>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
   </div>
