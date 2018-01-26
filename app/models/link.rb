@@ -1,8 +1,9 @@
 require 'uri'
+require 'levenshtein'
 
 class Link < ActiveRecord::Base
   validates :shortlink, presence: true, uniqueness: true
-  validates :url, :url => true
+  validates :url, url: true
 
   def self.search(query)
     if query.present?
@@ -11,4 +12,35 @@ class Link < ActiveRecord::Base
       Link.all
     end
   end
+
+  def self.levenshtein_distances(query)
+    links = where(type: nil)
+    links.map do |link|
+      OpenStruct.new link: link, distance: Levenshtein.distance(link.shortlink, query)
+    end
+  end
+
+  def url_for(path)
+    args = path.split('/', 2).second
+
+    target_url = url
+
+    target_url += argsstr.sub('%s', args) if argsstr.present? && args
+
+    target_url
+  end
 end
+
+# == Schema Information
+#
+# Table name: links
+#
+#  id          :integer          not null, primary key
+#  shortlink   :string
+#  url         :string
+#  argsstr     :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  description :text
+#  type        :text
+#
