@@ -17,7 +17,7 @@ gem 'coffee-rails'
 gem 'levenshtein-ffi', :require => 'levenshtein'
 
 # Add URL validation
-gem "validate_url"
+gem 'validate_url'
 
 gem 'rack-cors', :require => 'rack/cors'
 
