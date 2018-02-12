@@ -14,16 +14,18 @@ chrome.webRequest.onBeforeRequest.addListener(
             return { redirectUrl: parsed['url'].replace('%s', args) };
         }
 
+        var regex_url = null;
         JSON.parse(localStorage[REGEX_KEY]).forEach(function(link) {
             re = new RegExp(link.shortlink);
             matches = re.exec(request);
             if(matches) {
                 matched = matches.length === 2 ? matches[1] : matches[0];
                 url = link['url'] + (link['argsstr'] ? link['argsstr'].replace('%s', matched) : matched);
-                return { redirectUrl: url };
+                regex_url = url;
             }
         });
-        return { redirectUrl: localStorage['go_url'] + '/' + request };
+        var url = regex_url ? regex_url : localStorage['go_url'] + '/' + request
+        return { redirectUrl: url };
     },
     {
         urls: [
