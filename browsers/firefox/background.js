@@ -11,7 +11,9 @@ browser.webRequest.onBeforeRequest.addListener(
         stored = localStorage[shortlink];
         if (stored) {
             parsed = JSON.parse(stored);
-            return { redirectUrl: parsed['url'].replace('%s', args) };
+            url = parsed['url'];
+            url += parsed['argsstr'] ? parsed['argsstr'].replace('%s', args) : '';
+            return { redirectUrl: url };
         }
 
         var regex_url = null;
