@@ -3,7 +3,7 @@
 
   "name": "Linkhack Offline",
   "description": "This extension allow linkhack redirections even without access to the server",
-  "version": "1.0.1",
+  "version": "1.0.2",
 
   "browser_action": {
     "default_icon": "icon.png",
