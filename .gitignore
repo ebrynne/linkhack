@@ -17,5 +17,5 @@
 /tmp
 /.idea/*
 .idea/.generators
-.DS_Store
+*.DS_Store
 *.pem
