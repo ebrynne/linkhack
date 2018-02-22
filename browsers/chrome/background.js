@@ -11,19 +11,27 @@ chrome.webRequest.onBeforeRequest.addListener(
         stored = localStorage[shortlink];
         if (stored) {
             parsed = JSON.parse(stored);
-            return { redirectUrl: parsed['url'].replace('%s', args) };
+            url = parsed['url'];
+            url += parsed['argsstr'] ? parsed['argsstr'].replace('%s', args) : '';
+            return { redirectUrl: url };
         }
 
-        JSON.parse(localStorage[REGEX_KEY]).forEach(function(link) {
-            re = new RegExp(link.shortlink);
-            matches = re.exec(request);
-            if(matches) {
-                matched = matches.length === 2 ? matches[1] : matches[0];
-                url = link['url'] + (link['argsstr'] ? link['argsstr'].replace('%s', matched) : matched);
-                return { redirectUrl: url };
-            }
-        });
-        return { redirectUrl: localStorage['go_url'] + '/' + request };
+        var regex_url = null;
+        regexes = localStorage[REGEX_KEY]
+        if (regexes) {
+          JSON.parse(regexes).forEach(function(link) {
+              re = new RegExp(link.shortlink);
+              matches = re.exec(request);
+              if(matches) {
+                  matched = matches.length === 2 ? matches[1] : matches[0];
+                  url = link['url'] + (link['argsstr'] ? link['argsstr'].replace('%s', matched) : matched);
+                  regex_url = url;
+              }
+          });
+        }
+
+        var url = regex_url ? regex_url : localStorage['go_url'] + '/' + request
+        return { redirectUrl: url };
     },
     {
         urls: [
