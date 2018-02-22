@@ -10,7 +10,6 @@
     "default_popup": "index.html"
   },
   "background": {"scripts":["lib/jquery.js", "background.js"]},
-  "update_url": "http://0.0.0.0",
   "permissions": [
     "storage",
     "alarms",

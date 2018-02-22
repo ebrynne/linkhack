@@ -3,8 +3,8 @@ REGEX_KEY = '___REGEX___';
 
 browser.webRequest.onBeforeRequest.addListener(
     function(details) {
-        request = details.url.match(/^https?:\/\/[^\/]+([\S\s]*)/)[1].replace(/^\//, '');
-        request = request.split('/');
+        original_request = details.url.match(/^https?:\/\/[^\/]+([\S\s]*)/)[1].replace(/^\//, '');
+        request = original_request.split('/');
         shortlink = request[0];
         args = request.slice(1).join('');
 
@@ -30,7 +30,7 @@ browser.webRequest.onBeforeRequest.addListener(
           });
         }
 
-        var url = regex_url ? regex_url : localStorage['go_url'] + '/' + request
+        var url = regex_url ? regex_url : localStorage['go_url'] + '/' + original_request
         return { redirectUrl: url };
     },
     {
