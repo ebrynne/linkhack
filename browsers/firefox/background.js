@@ -17,15 +17,19 @@ browser.webRequest.onBeforeRequest.addListener(
         }
 
         var regex_url = null;
-        JSON.parse(localStorage[REGEX_KEY]).forEach(function(link) {
-            re = new RegExp(link.shortlink);
-            matches = re.exec(request);
-            if(matches) {
-                matched = matches.length === 2 ? matches[1] : matches[0];
-                url = link['url'] + (link['argsstr'] ? link['argsstr'].replace('%s', matched) : matched);
-                regex_url = url;
-            }
-        });
+        regexes = localStorage[REGEX_KEY]
+        if (regexes) {
+          JSON.parse(regexes).forEach(function(link) {
+              re = new RegExp(link.shortlink);
+              matches = re.exec(request);
+              if(matches) {
+                  matched = matches.length === 2 ? matches[1] : matches[0];
+                  url = link['url'] + (link['argsstr'] ? link['argsstr'].replace('%s', matched) : matched);
+                  regex_url = url;
+              }
+          });
+        }
+
         var url = regex_url ? regex_url : localStorage['go_url'] + '/' + request
         return { redirectUrl: url };
     },
