@@ -58,8 +58,8 @@
           <%= l.text_area :description, class: "form-control" %>
           <span class="help-block">A short description of your link that might be helpful to others. Totally optional.</span>
         </div>
-        <%= l.submit 'Save', class: "btn btn-primary" %>
-        <%= link_to 'Back to All Links', links_path, class: "btn btn-default pull-right" %>
+        <%= l.submit 'Save', class: "btn btn-primary pull-right" %>
+        <%= link_to 'Back to All Links', links_path, class: "btn btn-default" %>
 
         <% if @relevant_links.present? %>
           <hr/>
