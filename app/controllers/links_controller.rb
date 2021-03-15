@@ -13,7 +13,7 @@ class LinksController < ApplicationController
   end
 
   def new
-    return unless params.member? :link
+    return unless params.key? :link
 
     @relevant_links = Link
       .levenshtein_distances(link_params[:shortlink])
