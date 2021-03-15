@@ -19,3 +19,5 @@
 .idea/.generators
 .DS_Store
 *.pem
+public/assets/*
+vendor/bundle/*
