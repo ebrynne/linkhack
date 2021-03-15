@@ -21,3 +21,4 @@
 *.pem
 public/assets/*
 vendor/bundle/*
+linkhack.pid
