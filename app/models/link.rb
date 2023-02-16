@@ -1,5 +1,4 @@
 require 'uri'
-require 'levenshtein'
 
 class Link < ActiveRecord::Base
   validates :shortlink, presence: true, uniqueness: true
