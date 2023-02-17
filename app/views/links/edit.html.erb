@@ -8,29 +8,29 @@
 <% end %>
 <div class="panel panel-default">
   <div class="panel-body">
-    <%= form_with :link, url: link_path(@link), method: :patch do |l| %>
+    <%= form_with url: link_path(@link), method: :patch do |l| %>
     <div class="form-group">
       <label for="link_shortlink">Shortlink is a Regular Expression</label>
       <span class="help-block"><% if @link.type %>Yes<% else %>No<% end %></span>
     </div>
     <div class="form-group">
       <label for="link_shortlink">Shortlink</label>
-      <%= l.text_field :shortlink, class: "form-control" %>
+      <%= l.text_field :shortlink, class: "form-control", value: @link.shortlink %>
       <span class="help-block">The code you'll use to redirect to your chosen site (go/MY_SHORTLINK)</span>
     </div>
     <div class="form-group">
       <label for="link_shortlink">URL</label>
-      <%= l.text_field :url, class: "form-control" %>
+      <%= l.text_field :url, class: "form-control", value: @link.url %>
       <span class="help-block">The URL to which you want to redirect</span>
     </div>
     <div class="form-group">
       <label for="link_shortlink">Argument String</label>
-      <%= l.text_field :argsstr, class: "form-control" %>
+      <%= l.text_field :argsstr, class: "form-control", value: @link.argsstr %>
       <span class="help-block">If you want, you can allow additional parameters to be passed to your url. Put an additional string here with a "%s" in it and anything after the second slash when using the shortlink will get insterted in place of the '%s' and then appended to the original URL.</span>
     </div>
     <div class="form-group">
       <label for="link_description">Description</label>
-      <%= l.text_area :description, class: "form-control" %>
+      <%= l.text_area :description, class: "form-control", value: @link.description %>
       <span class="help-block">Any information users of this link should know about.</span>
     </div>
     <%= l.submit 'Save', class: "btn btn-primary" %>
