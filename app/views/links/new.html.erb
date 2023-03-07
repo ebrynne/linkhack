@@ -1,4 +1,5 @@
 <h1>Create a new ShortLink!</h1>
+<%= debug @link %>
 <% if @link && @link.errors.any? %>
 <div id="error_explanation">
   <h2>
@@ -37,7 +38,7 @@
 <div class="tab-content">
   <div class="panel panel-default tab-pane fade in active" id="basic-link">
     <div class="panel-body">
-      <%= form_for :link, url: links_path do |l| %>
+      <%= form_with url: links_path do |l| %>
         <div class="form-group">
           <label for="link_shortlink">Shortlink</label>
           <%= l.text_field :shortlink, class: "form-control" %>
@@ -81,7 +82,7 @@
   <div class="panel panel-default tab-pane fade" id="regex-link">
     <div class="panel-body">
       <div class="alert alert-info">This is a super basic first version of regex URL matching. Your shortlink can now be a regular expression with either zero or one groups. Either the group identified in the expression, or the entire matching shortlink if no group is defined, will have its content used as the argument string in the URL which you have selected for the redirect. Remember to be RESTRICTIVE in your matching (match start and end of string if possible) to avoid unexpected collisions</div>
-      <%= form_for :link, url: links_path do |l| %>
+      <%= form_with url: links_path do |l| %>
       <div class="form-group">
         <label for="link_shortlink">Shortlink</label>
         <%= l.text_field :shortlink, class: "form-control" %>
